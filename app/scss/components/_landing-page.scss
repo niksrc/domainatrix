@@ -1,0 +1,59 @@
+.landing-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 500px;
+}
+
+.hero {
+	padding-top: 100px;
+	flex: 2;
+
+	.heading {
+		display: flex;
+		justify-content: center;
+
+		h1 {
+			font-size: 100px;
+			color: $red;
+			margin:0 0 0 20px;
+			letter-spacing: -5px;
+			font-weight: normal;
+		}
+
+	}
+	.subheading {
+		font-size: 36px;
+		text-align: center;
+		letter-spacing: -2px;
+		font-weight: 300;
+		span {
+			margin-left: 20px;
+			&.strong {
+				color: $red;
+				font-weight: 400;
+			}
+		}
+	}
+
+	svg {
+		width: 100px;
+		.ghost {
+			animation: 1s ease-in-out infinite ghost;
+			animation-direction: alternate-reverse;
+		}
+	}
+}
+
+.action-button-wrapper {
+	flex: 1;
+}
+
+@keyframes ghost {
+	from {
+		transform: translateY(-10px);
+	}
+	to {
+		transform: translateY(0);
+	}
+}

@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600");
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  color: #291A2C;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+a {
+  text-decoration: none; }
+
+.btn {
+  padding: 12px 25px;
+  border-radius: 3px;
+  transition: .4s ease-out; }
+  .btn.primary {
+    color: white;
+    background-color: #FF847B; }
+  .btn:hover, .btn.active {
+    transition: .5s ease-out;
+    background-color: #ff766c;
+    /*box-shadow: 0 1px 1px rgba(183, 30, 19, .3);*/ }
+
+.landing-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 500px; }
+
+.hero {
+  padding-top: 100px;
+  flex: 2; }
+  .hero .heading {
+    display: flex;
+    justify-content: center; }
+    .hero .heading h1 {
+      font-size: 100px;
+      color: #FF847B;
+      margin: 0 0 0 20px;
+      letter-spacing: -5px;
+      font-weight: normal; }
+  .hero .subheading {
+    font-size: 36px;
+    text-align: center;
+    letter-spacing: -2px;
+    font-weight: 300; }
+    .hero .subheading span {
+      margin-left: 20px; }
+      .hero .subheading span.strong {
+        color: #FF847B;
+        font-weight: 400; }
+  .hero svg {
+    width: 100px; }
+    .hero svg .ghost {
+      animation: 1s ease-in-out infinite ghost;
+      animation-direction: alternate-reverse; }
+
+.action-button-wrapper {
+  flex: 1; }
+
+@keyframes ghost {
+  from {
+    transform: translateY(-10px); }
+  to {
+    transform: translateY(0); } }
