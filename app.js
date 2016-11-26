@@ -8,12 +8,12 @@ const app = express();
  * Shouldn't be needed after assets served through nginx directly :)
  */
 app.use(logger('dev'));
-app.use(express.static(path.join(__dirname, 'app')));
-app.use(express.static(path.join(__dirname, 'build')));
-app.use(express.static(path.join(__dirname, 'bower_components')));
+app.use(express.static(path.join(__dirname, './bower_components')));
+app.use(express.static(path.join(__dirname, './build')));
+app.use(express.static(path.join(__dirname, './app')));
 
 // Serve app
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
 	if (process.env.NODE_ENV === 'dev') {
 		res.sendFile(path.join(__dirname, './app/index.html'));
 	} else {
