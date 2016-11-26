@@ -24,7 +24,13 @@ angular
 					AuthServiceProvider.$get().digitalOcean.handleCallback();
 				},
 			})
+			.when('/app', {
+					templateUrl: 'partials/app.html',
+					controller: 'AppCtrl',
+					controllerAs: 'app'
+			})
 			.otherwise('/');
+
 	}
 
 angular
