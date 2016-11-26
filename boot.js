@@ -10,6 +10,7 @@ const app = require('./app');
 
 // Load env vars
 require('dotenv').load();
+var browserSync = require('browser-sync');
 
 /**
  * Get port from environment and store in Express.
@@ -61,6 +62,13 @@ function onError(error) {
  */
 
 function onListening() {
+	if (process.env.NODE_ENV === 'dev') {
+		browserSync({
+			proxy: 'localhost:' + port,
+			files: ['app/**/*.{js,css}']
+		});
+	}
 	const addr = server.address();
 	debug('Server started listening ' + addr.port);
 }
+
