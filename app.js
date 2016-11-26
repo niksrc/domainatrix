@@ -10,6 +10,7 @@ const app = express();
 app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'app')));
 app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, 'bower_components')));
 
 // Serve app
 app.get('/', (req, res) => {
