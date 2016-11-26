@@ -1,9 +1,9 @@
 angular
 	.module('domx')
-	.controller('HomeCtrl', [HomeCtrl])
+	.controller('HomeCtrl', ['AuthService', HomeCtrl])
 
 
-	function HomeCtrl() {
+	function HomeCtrl(AuthService) {
 		var vm = this;
-
+		vm.auth = AuthService.digitalOcean.authorize;
 	}
