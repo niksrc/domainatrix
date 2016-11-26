@@ -2,9 +2,10 @@
   "name": "domainatrix",
   "version": "1.0.0",
   "description": "Own your domain",
-  "main": "index.js",
+  "main": "boot.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node boot.js"
   },
   "repository": {
     "type": "git",
@@ -18,8 +19,11 @@
   "homepage": "https://github.com/niksrc/domainatrix#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "debug": "^2.3.3",
+    "dotenv": "^2.0.0",
     "express": "^4.14.0",
     "logger": "^0.0.1",
+    "morgan": "^1.7.0",
     "serve-favicon": "^2.3.2"
   }
 }
