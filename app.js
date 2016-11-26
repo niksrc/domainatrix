@@ -14,9 +14,9 @@ app.use(express.static(path.join(__dirname, 'build')));
 // Serve app
 app.get('/', (req, res) => {
 	if (process.env.NODE_ENV === 'dev') {
-		res.send('./app/index.html');
+		res.sendFile(path.join(__dirname, './app/index.html'));
 	} else {
-		res.send('./build/index.html');
+		res.sendFile(path.join(__dirname, './build/index.html'));
 	}
 });
 
