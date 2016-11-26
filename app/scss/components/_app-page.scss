@@ -25,6 +25,27 @@ nav {
 	}
 }
 
+.domain-table {
+	width: 100%;
+	max-width: 1200px;
+	margin: 32px auto 0;
+	&__item {
+		text-align: left;
+	}
+
+	&__item--heading {
+		font-size: 24px;
+	}
+
+	&__item--indent :first-child {
+		padding-left:20px;
+	}
+}
+
+.u-light-border {
+		border-bottom: 2px solid $grey;
+}
+
 .list-wrapper {
 	max-width: 1200px;
 	margin: 32px auto 0;

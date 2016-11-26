@@ -84,6 +84,20 @@ nav {
     letter-spacing: -2px;
     font-weight: 400; }
 
+.domain-table {
+  width: 100%;
+  max-width: 1200px;
+  margin: 32px auto 0; }
+  .domain-table__item {
+    text-align: left; }
+  .domain-table__item--heading {
+    font-size: 24px; }
+  .domain-table__item--indent :first-child {
+    padding-left: 20px; }
+
+.u-light-border {
+  border-bottom: 2px solid #DADADA; }
+
 .list-wrapper {
   max-width: 1200px;
   margin: 32px auto 0; }
