@@ -1,7 +1,6 @@
 const path = require('path');
 const express = require('express');
 const logger = require('morgan');
-const favicon = require('serve-favicon');
 // Instantiate an app instance
 const app = express();
 /**
@@ -11,7 +10,6 @@ const app = express();
 app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'app')));
 app.use(express.static(path.join(__dirname, 'build')));
-app.use(favicon(path.resolve(__dirname, '/public/favicon.ico')));
 
 // Serve app
 app.get('/', (req, res) => {
