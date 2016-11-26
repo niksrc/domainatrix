@@ -1,0 +1,27 @@
+body {
+	font-family: 'Source Sans Pro', sans-serif;
+	color: $black;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+	text-decoration: none;
+}
+
+.btn {
+	padding: 12px 25px;
+	border-radius: $radius;
+  transition: .4s ease-out;
+
+	&.primary {
+		color: white;
+		background-color: $red;
+	}
+
+	&:hover, &.active {
+  	transition: .5s ease-out;
+		background-color: darken($red, 3%);
+		/*box-shadow: 0 1px 1px rgba(183, 30, 19, .3);*/
+	}
+}
