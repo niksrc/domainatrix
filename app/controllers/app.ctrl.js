@@ -68,15 +68,18 @@ angular
 			console.log(error);
 		});
 
-		DigitaloceanService.getAllDomains().then( function(data) {
-			vm.domains = data.data.domains.map(function(domain){
-				domain.zone = Zone.parse(domain.zone_file);
-				return domain
+		getDomains();
+		function getDomains(){
+			DigitaloceanService.getAllDomains().then( function(data) {
+				vm.domains = data.data.domains.map(function(domain){
+					domain.zone = Zone.parse(domain.zone_file);
+					return domain
+				});
+				console.log(vm.domains);
+			}, function(error) {
+				console.log('error is', error);
 			});
-			console.log(vm.domains);
-		}, function(error) {
-			console.log('error is', error);
-		});
+		}
 
 		vm.deleteDomain = function(domainName, index) {
 			DigitaloceanService.deleteDomain(domainName).then( function(data) {
@@ -93,8 +96,9 @@ angular
 
 			DigitaloceanService.createDomain(createDomainParams).then(function(data) {
 				var domainName = data.data.domain.name;
-				vm.createARecord(domainDetail);
+				vm.createARecord(domainName, domainDetail);
 				vm.createCRecord(domainName, domainDetail);
+				getDomains();
 			})
 		}
 
@@ -106,23 +110,23 @@ angular
 			}
 		}
 
-		vm.createARecord = function(domainRecordDetail) {
+		vm.createARecord = function(domainName, domainRecordDetail) {
 			ARecordParams = createAnyRecord('A', domainRecordDetail.records.subdomain.name, domainRecordDetail.ip.networks.v4[0].ip_address );
-			DigitaloceanService.createDomain(ARecordParams).then(function(data) {
+			DigitaloceanService.createDomainRecords(domainName, ARecordParams).then(function(data) {
 				console.log(data);
 			})
 		}
 
 		vm.createCRecord = function(domainName, domainRecordDetail) {
 			CRecordParams = createAnyRecord('CNAME', domainRecordDetail.records.root, domainName+'.');
-			DigitaloceanService.createDomain(CRecordParams).then(function(data) {
+			DigitaloceanService.createDomainRecords(domainName, CRecordParams).then(function(data) {
 				console.log(data);
 			})
 		}
 
-		vm.createTRecord = function(domainRecordDetail) {
+		vm.createTRecord = function(domainName, domainRecordDetail) {
 			CRecordParams = createAnyRecord('TXT', '@', '');
-			DigitaloceanService.createDomain(CRecordParams).then(function(data) {
+			DigitaloceanService.createDomainRecord(domainName, CRecordParams).then(function(data) {
 				console.log(data);
 			})
 		}
