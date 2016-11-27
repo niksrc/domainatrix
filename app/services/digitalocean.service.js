@@ -25,8 +25,8 @@ angular
 
 		var token = AuthService.digitalOcean.getToken();
 		var headers = {
+			'Authorization' : 'Bearer' + ' ' + token.toString(),
 			'Content-Type': 'application/json',
-			'Authorization' : 'Bearer' + ' ' + token.toString()
 		}
 
 		function getAllDomains() {
@@ -54,10 +54,11 @@ angular
 		}
 
 		function createDomain(domainData) {
-			return $http
-				.post(api + apiEndPoint.createDomain, {
+			return $http({
+					method: 'POST',
+					url: api + apiEndPoint.createDomain,
 					headers: headers,
-					data: domainData
+					data: domainData,
 				})
 				.then(function(response) {
 					return response;
