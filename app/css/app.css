@@ -127,6 +127,11 @@ nav {
 .ng-hide {
   display: none; }
 
+.form-container {
+  width: 60%;
+  margin: auto;
+  text-align: center; }
+
 /* =============================================================
 
     Tables v1.0
