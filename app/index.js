@@ -20,7 +20,6 @@ angular
 			.when('/auth/digitalocean/callback', {
 				template:'',
 				controller: function () {
-					console.log(AuthServiceProvider.$get())
 					AuthServiceProvider.$get().digitalOcean.handleCallback();
 				},
 			})

@@ -16,14 +16,6 @@ angular
 		};
 
 		vm.droplets = {};
-
-		vm.domainDetailsReq = function(domainDetails) {
-			return {
-				name: domainDetails.name,
-				ip: domainDetails.ip.networks.v4[0].ip_address
-			}
-		}
-
 		vm.domainDetailsReq = {}
 
 		DigitaloceanService.getAllDroplets().then( function(data) {
@@ -51,8 +43,12 @@ angular
 		}
 
 		vm.createDomain = function(domainDetail) {
-			debugger
-			DigitaloceanService.createDomain(domainDetail).then(function(data) {
+			var createDomainParams = {
+				name: domainDetail.name,
+				ip_address: domainDetail.ip.networks.v4[0].ip_address
+			};
+
+			DigitaloceanService.createDomain(createDomainParams).then(function(data) {
 				console.log(data);
 			})
 		}
