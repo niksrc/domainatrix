@@ -27,7 +27,7 @@ angular
 			.when('/app', {
 					templateUrl: 'partials/app.html',
 					controller: 'AppCtrl',
-					controllerAs: 'app'
+					controllerAs: 'vm'
 			})
 			.otherwise('/');
 

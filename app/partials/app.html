@@ -28,18 +28,43 @@
 			<th class="u-light-border">Add</th>
 			<th class="u-light-border">Delete</th>
 		</tr>
-		<tr class="domain-table__item">
-			<td>Domain Name</td>
-			<td>Droplet eman</td>
-			<td>Act 1</td>
-			<td>Act 2</td>
-		</tr>
-		<tr class="domain-table__item--indent">
-			<td>Domain Name</td>
-			<td>Droplet eman</td>
-			<td>Act 1</td>
+		<tr ng-repeat="domain in vm.domains track by $index" class="domain-table__item">
+			<td>{{domain.name}}</td>
+			<td>{{domain.zone.a[0].ip}}</td>
+			<td><a href="#" ng-click="vm.deleteDomain(domain.name, $index)">delete</td>
 			<td>Act 2</td>
 		</tr>
 	</table>
+
+	<div class="form">
+		<div class="form-group">
+		<input type="text" placeholder="Enter Domain name (example abc.com)" ng-model="vm.domainDetails.name">
+		<select ng-model="vm.domainDetails.ip" ng-options="droplet.name for droplet in vm.droplets" value="Select Droplet">
+		</select>
+		</div>
+		Point
+<!-- 		<div class="form-group">
+		<input type="text" placeholder="www.yourdomain.com" ng-model="vm.domainDetails.sub"> to
+		<input type="text" placeholder="yourdomain.com" ng-model="vm.domainDetails.name">
+		</div>
+		<div class="form-group">
+		<input type="checkbox" value="create_subdomain" ng-model="showSubdomain"> Create Subdomain ?
+		</div>
+		<div class="form-group" ng-if="showSubdomain">
+			<input type="text" placeholder="subdomain name (example.yourdomain.com)" ng-model="vm.domainDetails.subdomain.name"> to
+			<input type="text" placeholder="ip address" ng-model="vm.domainDetails.subdomain.ip">
+		</div>
+		<div class="form-group">
+		<input type="checkbox" name="" ng-click=""> Require Google site verification? (Google Analytics, Webmasters, Adsense) *Must try
+		</div>
+		<div class="form-group">
+		<input type="checkbox" name="" ng-click=""> Require Mailgun verification? (Send authentic mails to prevent spoofing and spamming)
+		</div>
+ -->
+		<div class="form-group">
+			<input type="submit" value="Voila!" name="" ng-click="vm.createDomain(vm.domainDetailsReq(vm.domainDetails))">
+		</div>
+	</div>
+
 </div>
 

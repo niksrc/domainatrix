@@ -14,7 +14,8 @@ angular
 		return {
 			digitalOcean: {
 				authorize: authorizeDO,
-				handleCallback: handleDOCallback
+				handleCallback: handleDOCallback,
+				getToken: doGetToken
 			}
 		};
 
@@ -30,6 +31,7 @@ angular
 			var queryParams = '?client_id=' + params.client_id;
 			queryParams += '&redirect_uri=' + params.redirect_uri;
 			queryParams += '&response_type=' + params.response_type;
+			queryParams += '&scope=read%20write';
 			$window.location.href = api + queryParams;
 		}
 
@@ -59,5 +61,14 @@ angular
 
 			LocalStorageService.set('do_tok', token);
 			$location.url('/app');
+		}
+
+		function doGetToken() {
+			var token = LocalStorageService.get('do_tok');
+			if(!token) {
+				$location.url('/');
+			}
+
+			return token;
 		}
 	}
