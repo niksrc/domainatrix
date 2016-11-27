@@ -21,32 +21,41 @@
 		<h1>Domainatrix</h1>
 	</nav>
 
-	<table class="domain-table">
-		<tr class="domain-table__item domain-table__item--heading">
-			<th class="u-light-border">Domains</th>
-			<th class="u-light-border">Droplets</th>
-			<th class="u-light-border">Delete</th>
-			<th class="u-light-border">Google Verification</th>
-		</tr>
-		<tr ng-repeat="domain in vm.domains track by $index" class="domain-table__item">
-			<td>{{domain.name}}</td>
-			<td>{{domain.zone.a[0].ip}}</td>
-			<td><a href="#" ng-click="vm.deleteDomain(domain.name, $index)">delete</td>
-			<td ng-hide="vm.google.fetched"> {{ vm.google.status }}</td>
-			<td ng-show="{{vm.google.auth && vm.google.fetched && vm.checkIfVerified(domain.name)}}"> Verified </td>
-			<td ng-show="{{vm.google.auth && vm.google.fetched && !vm.checkIfVerified(domain.name)}}">
-				<a ng-href="" ng-click="vm.verify(domain.name)"> Verify </a>
-			</td>
-			<td ng-hide="vm.google.auth">
-				<a ng-click="vm.googleAuth()"> {{vm.google.status}} </a>
-			<td>
-		</tr>
-	</table>
+	<div class="table-container">
+		<table class="table">
+		<thead>
+			<tr class="">
+				<th>Domains</th>
+				<th>Droplets</th>
+				<th>Delete</th>
+				<th>Google Verification</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="domain in vm.domains track by $index" class="domain-table__item">
+				<td>{{domain.name}}</td>
+				<td>{{domain.zone.a[0].ip}}</td>
+				<td><a href="#" ng-click="vm.deleteDomain(domain.name, $index)">delete</td>
+				<td ng-hide="vm.google.fetched"> {{ vm.google.status }}</td>
+				<td ng-show="{{vm.google.auth && vm.google.fetched && vm.checkIfVerified(domain.name)}}"> Verified </td>
+				<td ng-show="{{vm.google.auth && vm.google.fetched && !vm.checkIfVerified(domain.name)}}">
+					<a ng-href="" ng-click="vm.verify(domain.name)"> Verify </a>
+				</td>
+				<td ng-hide="vm.google.auth">
+					<a ng-click="vm.googleAuth()"> {{vm.google.status}} </a>
+				<td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<h2>Setup a Domain</h2>
 
 	<div class="form">
 		<div class="form-group">
 			<input type="text" placeholder="Enter Naked Domain name (example abc.com)" ng-model="vm.domainDetails.name">
-			<select ng-model="vm.domainDetails.ip" ng-options="droplet.name for droplet in vm.droplets" value="Select Droplet">
+			<select class="styled-select slate" ng-model="vm.domainDetails.ip" ng-options="droplet.name for droplet in vm.droplets" value="Select Droplet">
 			</select>
 		</div>
 		Point
