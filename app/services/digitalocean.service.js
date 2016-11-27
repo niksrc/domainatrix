@@ -68,8 +68,9 @@ angular
 		}
 
 		function createDomainRecords(domainName, domainRecords) {
-			return $http
-				.post(api + apiEndPoint.createDomainRecords.replace('{domainName}', domainName), {
+			return $http({
+					method: 'POST',
+					url: api + apiEndPoint.createDomainRecords.replace('{domainName}', domainName),
 					headers: headers,
 					data: domainRecords
 				})

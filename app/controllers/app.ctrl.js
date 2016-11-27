@@ -9,11 +9,22 @@ angular
 		vm.domainDetails = {
 			name: '',
 			ip: '',
-			subdomain: {
-				name: '',
-				ip: ''
-			}
-		};
+			records: {
+									root: '',
+									subdomain: {
+																name: '',
+																ip: ''
+									}
+								}
+			};
+
+		// vm.domainRecordDetails = {
+		// 	root: '',
+		// 	subdomain: {
+		// 		name: '',
+		// 		ip: ''
+		// 	}
+		// };
 
 		vm.droplets = {};
 		vm.domainDetailsReq = {}
@@ -49,8 +60,41 @@ angular
 			};
 
 			DigitaloceanService.createDomain(createDomainParams).then(function(data) {
+				var domainName = data.data.domain.name;
+				vm.createARecord(domainDetail);
+				vm.createCRecord(domainName, domainDetail);
+			})
+		}
+
+		var createAnyRecord = function(type, name, data) {
+			return {
+				type: type,
+				name: name,
+				data: data,
+			}
+		}
+
+		vm.createARecord = function(domainRecordDetail) {
+			ARecordParams = createAnyRecord('A', domainRecordDetail.records.subdomain.name, domainRecordDetail.ip.networks.v4[0].ip_address );
+			DigitaloceanService.createDomain(ARecordParams).then(function(data) {
 				console.log(data);
 			})
 		}
+
+		vm.createCRecord = function(domainName, domainRecordDetail) {
+			CRecordParams = createAnyRecord('CNAME', domainRecordDetail.records.root, domainName+'.');
+			DigitaloceanService.createDomain(CRecordParams).then(function(data) {
+				console.log(data);
+			})
+		}
+
+		vm.createTRecord = function(domainRecordDetail) {
+			CRecordParams = createAnyRecord('TXT', '@', '');
+			DigitaloceanService.createDomain(CRecordParams).then(function(data) {
+				console.log(data);
+			})
+		}
+
+
 	}
 
