@@ -65,7 +65,8 @@ function onListening() {
 	if (process.env.NODE_ENV === 'dev') {
 		browserSync({
 			proxy: 'localhost:' + port,
-			files: ['app/**/*.{js,css,html}']
+			files: ['app/**/*.{js,css,html}'],
+			https: true
 		});
 	}
 	const addr = server.address();

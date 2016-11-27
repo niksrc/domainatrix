@@ -23,6 +23,12 @@ angular
 					AuthServiceProvider.$get().digitalOcean.handleCallback();
 				},
 			})
+			.when('/auth/google/callback', {
+				template:'',
+				controller: function () {
+					AuthServiceProvider.$get().google.handleCallback();
+				},
+			})
 			.when('/app', {
 					templateUrl: 'partials/app.html',
 					controller: 'AppCtrl',
@@ -38,4 +44,12 @@ angular
 
 angular
 	.module('domx')
-	.constant('DOAuthCallback', 'http://127.0.0.1:3000/auth/digitalocean/callback/');
+	.constant('GoogClientId', '604808695576-o0s8ukjeesa8aoqe30301jacsc92n09d.apps.googleusercontent.com');
+
+angular
+	.module('domx')
+	.constant('DOAuthCallback', 'https://127.0.0.1:3000/auth/digitalocean/callback/');
+
+angular
+	.module('domx')
+	.constant('GoogleAuthCallback', 'https://127.0.0.1:3000/auth/google/callback/');

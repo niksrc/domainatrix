@@ -129,3 +129,6 @@ nav {
       flex: 1; }
     .list-wrapper span:nth-child(4) {
       flex: 1; }
+
+.ng-hide {
+  display: none; }

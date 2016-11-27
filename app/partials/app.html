@@ -26,11 +26,20 @@
 			<th class="u-light-border">Domains</th>
 			<th class="u-light-border">Droplets</th>
 			<th class="u-light-border">Delete</th>
+			<th class="u-light-border">Google Verification</th>
 		</tr>
 		<tr ng-repeat="domain in vm.domains track by $index" class="domain-table__item">
 			<td>{{domain.name}}</td>
 			<td>{{domain.zone.a[0].ip}}</td>
 			<td><a href="#" ng-click="vm.deleteDomain(domain.name, $index)">delete</td>
+			<td ng-hide="vm.google.fetched"> {{ vm.google.status }}</td>
+			<td ng-show="{{vm.google.auth && vm.google.fetched && vm.checkIfVerified(domain.name)}}"> Verified </td>
+			<td ng-show="{{vm.google.auth && vm.google.fetched && !vm.checkIfVerified(domain.name)}}">
+				<a ng-href="" ng-click="vm.verify(domain.name)"> Verify </a>
+			</td>
+			<td ng-hide="vm.google.auth">
+				<a ng-click="vm.googleAuth()"> {{vm.google.status}} </a>
+			<td>
 		</tr>
 	</table>
 
@@ -69,6 +78,5 @@
 			<input type="submit" value="Voila!"  ng-click="vm.createDomain(vm.domainDetails)">
 		</div>
 	</div>
-
 </div>
 

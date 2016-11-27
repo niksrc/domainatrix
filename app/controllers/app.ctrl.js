@@ -1,9 +1,41 @@
 angular
 	.module('domx')
-	.controller('AppCtrl', ['Zone', 'DigitaloceanService', AppCtrl])
+	.controller('AppCtrl', ['$window', 'AuthService', 'Zone', 'DigitaloceanService', 'Google', AppCtrl])
 
-	function AppCtrl(Zone, DigitaloceanService) {
+	function AppCtrl($window, AuthService, Zone, DigitaloceanService, Google) {
 		var vm = this;
+		vm.googleAuth = AuthService.google.authorize;
+		vm.google = {};
+		vm.google.status = 'Loading...';
+		vm.verify = Google.verify
+		vm.google.auth = true;
+		Google
+			.list()
+			.then(function(data) {
+				var items = data.data.items || {};
+				vm.google.domainList = items
+					.map(function (item) {
+						return $window.decodeURIComponent(item.id);
+					});
+				vm.google.fetched = true;
+				vm.google.status = 'Done';
+			}, function (res) {
+				if (res.status === 401) {
+					vm.google.fetched = true;
+					vm.google.status = 'Login with google to control';
+					vm.google.auth = false;
+				};
+			})
+
+		vm.checkIfVerified = function (domainName) {
+			var isVerified = vm.google.domainList
+				.filter(function (name) {
+					return name.indexOf(domainName) !== -1;
+				});
+
+			return isVerified.length > 0;
+		}
+
 		vm.domains = [];
 
 		vm.domainDetails = {

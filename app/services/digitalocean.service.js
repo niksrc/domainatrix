@@ -18,7 +18,7 @@ angular
 			getAllDomains: '/domains',
 			deleteDomain: '/domains/',
 			createDomain: '/domains',
-			createDomainRecords: '/createDomain/{domainName}/records',
+			createDomainRecords: '/domains/{domainName}/records',
 			editDomainRecords: '/domains',
 			getAllDroplets: '/droplets'
 		};
